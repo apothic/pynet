@@ -13,7 +13,7 @@ cfg_users = cfg_parse.find_objects(r"^user")
 cfg_nat = cfg_parse.find_objects(r"^nat")
 cfg_cm = cfg_parse.find_objects(r"^crypto map")
 cfg_route = cfg_parse.find_objects(r"route ")
-
+cfg_serial = cfg_parse.find_objects(r"Serial Number:")
 options = ""
 def choices(options):
      options = raw_input("""
@@ -22,6 +22,7 @@ def choices(options):
 3. NAT Config
 4. Crypto Map
 5. Routes
+6. Serial Number
 10. Quit
 
 Please Select an Option:""")
@@ -49,6 +50,11 @@ Please Select an Option:""")
      elif options == "5":
           print "Routes"
           for line in cfg_route:
+               print line.text
+          choices(options)
+     elif options == "6":
+          print "Serial Number"
+          for line in cfg_serial:
                print line.text
           choices(options)
      elif options == "10":
