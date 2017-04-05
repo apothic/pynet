@@ -13,7 +13,7 @@ cfg_users = cfg_parse.find_objects(r"^user")
 cfg_nat = cfg_parse.find_objects(r"^nat")
 cfg_cm = cfg_parse.find_objects(r"^crypto map")
 cfg_route = cfg_parse.find_objects(r"route ")
-cfg_serial = cfg_parse.find_objects(r"Serial Number:")
+cfg_serial = cfg_parse.find_objects(r"^Serial Number:")
 options = ""
 def choices(options):
      options = raw_input("""
