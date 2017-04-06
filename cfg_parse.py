@@ -1,9 +1,11 @@
+#!/usr/bin/env python
+
 from ciscoconfparse import CiscoConfParse
 
-#Program Being Developed to Parse Cisco Configs
+#Program Being Developed to Parse Cisco ASA Configs
 #In Progess
 
-config = raw_input("Enter cfg filename: ")
+config = raw_input("Enter Config Filename: ")
      
 
 cfg_parse = CiscoConfParse(config)
@@ -26,7 +28,7 @@ def choices(options):
     options = raw_input("""
 1. Access Control Lists
 2. Local Users
-3. NAT Config
+3. NAT Outside Object Config
 4. Crypto Map
 5. ikev1 transform-set
 6. ikev2 ipsec-proposal
