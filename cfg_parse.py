@@ -20,7 +20,9 @@ cfg_route = cfg_parse.find_objects(r"route ")
 cfg_serial = cfg_parse.find_objects(r"Serial Number:")
 options = ""
 sa_pol = [] # Security Association List for Children of Policy Config
+
 def choices(options):
+
     options = raw_input("""
 1. Access Control Lists
 2. Local Users
@@ -37,24 +39,34 @@ def choices(options):
 Please Select an Option:""")
 
     if options == "1":
-        print "ACL Config"
+        print "ACL Config\n"
         for line in cfg_acl:
             print line.text
         choices(options)
     elif options == "2":
-        print "Local Users"
+        print "Local Users\n"
         for line in cfg_users:
              print line.text
         choices(options)
     elif options == "3":
-        print "NAT Config"
+        print "NAT Config\n"
         for line in cfg_nat:
              print line.text
         choices(options)
-    elif options =="4":
-        print "Crypto Map"
+    elif options == "4":
+        print "Crypto Map\n"
         for line in cfg_cm:
              print line.text
+        choices(options)
+    elif options == "5":
+        print "ikev1 transform-set\n"
+        for line in cfg_ikev1:
+            print line.text
+        choices(options)
+    elif options == "6":
+        print "ikev2 ipsec-proposal\n"
+        for line in cfg_ikev2:
+            print line.text
         choices(options)
     elif options == "7":
         print "ikev1 Policy\n"
@@ -73,7 +85,7 @@ Please Select an Option:""")
                 print i.text
         choices(options)
     elif options == "9":
-        print "Routes"
+        print "Routes\n"
         for line in cfg_route:
             print line.text
         choices(options)
