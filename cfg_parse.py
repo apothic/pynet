@@ -2,10 +2,10 @@
 
 from ciscoconfparse import CiscoConfParse
 
-#Program Being Developed to Parse Cisco ASA Configs
+#Program Being Developed to Parse Cisco Configs
 #In Progess
 
-config = raw_input("Enter Config Filename: ")
+config = raw_input("Enter cfg filename: ")
      
 
 cfg_parse = CiscoConfParse(config)
@@ -20,15 +20,18 @@ cfg_ikev1_pol = cfg_parse.find_objects(r"crypto ikev1 policy")
 cfg_ikev2_pol = cfg_parse.find_objects(r"crypto ikev2 policy")
 cfg_route = cfg_parse.find_objects(r"route ")
 cfg_serial = cfg_parse.find_objects(r"Serial Number:")
+cfg_obj_net_nat = cfg_parse.find_objects_w_child(parentspec=r"object network",childspec=r"nat")
+cfg_obj_net_host = cfg_parse.find_objects_w_child(parentspec=r"object network",childspec=r"host")
 options = ""
 sa_pol = [] # Security Association List for Children of Policy Config
-
+obj_net = []
 def choices(options):
 
     options = raw_input("""
 1. Access Control Lists
 2. Local Users
 3. NAT Outside Object Config
+4. NAT Inside Object Config
 4. Crypto Map
 5. ikev1 transform-set
 6. ikev2 ipsec-proposal
@@ -56,6 +59,14 @@ Please Select an Option:""")
              print line.text
         choices(options)
     elif options == "4":
+        print "NAT Config\n"
+        for line in cfg_obj_net_nat:
+            obj_net = line
+            print line.text
+            for i in obj_net.all_children:
+                print i.text
+        choices(options)
+    elif options == "12":
         print "Crypto Map\n"
         for line in cfg_cm:
              print line.text
